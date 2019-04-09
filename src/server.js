@@ -12,7 +12,6 @@ const io = socket_io(server);
 app.use(cors());
 
 io.on('connection', socket => {
-    console.log('ok');
     socket.on('connectRoom', box => {
         socket.join(box);
     });
@@ -33,4 +32,4 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp')));
 app.use(require('./routes'));
 
-server.listen(3333);
+server.listen(process.env.PORT || 3333);
